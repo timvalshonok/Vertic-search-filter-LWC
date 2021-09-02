@@ -3,15 +3,24 @@
         <div class="slds-m-around_medium">
             <lightning-input type="search" class="slds-m-bottom_small input" 
             label="Search" value={strConName}></lightning-input>
-            <lightning-button label="FILTER" variant="brand" onclick={handleKeyChange}>
+            <lightning-button class="slds-var-m-bottom_small" label="FILTER" variant="brand" onclick={handleKeyChange}>
+            </lightning-button>
+            <lightning-button class="slds-var-m-left_medium" label="NEW" variant="brand" onclick={bOpenModal}>
             </lightning-button>
             <div>
+                <div>
+                    <c-new-contact onrendercontactschange={hanldeRenderContactsChange}></c-new-contact>
+                </div>
                 <lightning-datatable 
                     data={rows}
                     columns={columns}
                     key-field="Id"
-                    hide-checkbox-column="true">
+                    hide-checkbox-column="true"
+                    onrowaction={handleRowAction}>
                 </lightning-datatable>
+                <div>
+                    <c-delete-contact row={row} onrerendercontacts={reRenderContacts}></c-delete-contact>   
+                </div>
             </div>
         </div>
     </lightning-card>
